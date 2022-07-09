@@ -1,17 +1,14 @@
 const express = require('express');
+const { 
+    homeView,
+    contactView,
+    blogsView
+} = require('./../../controllers/pageController');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('<h1>Home page</h1>');
-});
-
-router.get('/contact', (req, res) => {
-    res.send('<h1>Contact page</h1>');
-});
-
-router.get('/blogs', (req, res) => {
-    res.send('<h1>Blog page</h1>');
-});
+router.get('/', homeView);
+router.get('/contact', contactView);
+router.get('/blogs', blogsView);
 
 module.exports = router;
