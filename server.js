@@ -1,11 +1,12 @@
 const express = require('express');
 
 const app = express();
+const PORT = process.env.PORT || 3003;
 
-app.get('/', (req, res) => {
-    res.send('<h1>Home page</h1>');
-});
+// const router = require('./routes/index');
+// app.use('/', router);
+require('./routes/index')(app);
 
-app.listen(3003, () => {
-    console.log('Server is running on port: 3003');
+app.listen(PORT, () => {
+    console.log(`Server is running on port: ${PORT}`);
 });
