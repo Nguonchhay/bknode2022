@@ -27,13 +27,30 @@ require('./routes/index')(app);
 const passport = require('passport');
 app.use(passport.initialize());
 
-const { sequelize } = require('./models');
+// const { sequelize } = require('./models');
+const mongoose = require("mongoose");
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
-    sequelize.authenticate()
-        .then(() => {
-            console.log('PostgreSQL is connected.');
-        })
-        .catch(err => console.log(err));
+    // sequelize.authenticate()
+    //     .then(() => {
+    //         console.log('PostgreSQL is connected.');
+    //     })
+    //     .catch(err => console.log(err));
+
+    const conn_str = 'mongodb+srv://admin:admin12345@attractionapp.ld0iq.mongodb.net/bknode2022?retryWrites=true&w=majority'
+    mongoose.connect(
+        conn_str,
+        {
+            useNewUrlParser: true, 
+            useUnifiedTopology: true 
+        },
+        (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("Mongodb is connected");
+            }
+        }
+    );
 });
